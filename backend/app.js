@@ -2,9 +2,11 @@ import express from "express";
 import morgan from "morgan";
 import helmet from "helmet";
 import cors from "cors";
-import { router as userRouter } from "./routes/userRoutes.js";
 import path from "path";
 import { fileURLToPath } from "url";
+
+import { router as userRouter } from "./routes/userRoutes.js";
+import { globalErrorHandler } from "./controllers/errorController.js";
 
 export const app = express();
 
@@ -16,6 +18,7 @@ app.use(helmet());
 // Middlewares
 if ((process.env.NODE_ENV = "development")) {
   app.use(morgan("dev"));
+  console.log(`App is on ${process.env.NODE_ENV} mode`);
 }
 
 app.use(express.json());
@@ -32,6 +35,5 @@ app.use((req, res, next) => {
 // Routes
 app.use("/api/v.1/users", userRouter);
 
-app.get("/", (req, res) => {
-  res.status(200).send("hello");
-});
+// global error
+app.use(globalErrorHandler);
