@@ -1,0 +1,16 @@
+{
+  "name": "ai-image-generator-v-1.0.1",
+  "version": "1.0.0",
+  "description": "creating ai-image-generator",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "dev": "node --watch server.js"
+  },
+  "author": "luka tchelidze",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "express": "^4.21.2"
+  }
+}
