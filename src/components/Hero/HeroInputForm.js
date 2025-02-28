@@ -3,8 +3,8 @@ import { WiStars } from "react-icons/wi";
 
 function HeroInputForm() {
   return (
-    <form className="flex items-center">
-      <div className="relative w-full">
+    <form className="flex items-center justify-center">
+      <div className="relative max-w-[1200px] w-full">
         <textarea
           className="bg-[#060610] shadow-sm shadow-[#CAFF00] 
           border-2 border-[#25232C] w-full rounded-full resize-none pl-4 py-4 h-14
