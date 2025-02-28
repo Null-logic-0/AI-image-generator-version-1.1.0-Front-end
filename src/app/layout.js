@@ -1,5 +1,6 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Header from "@/components/Header/Header.js";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -12,14 +13,16 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "AI Image Generator",
-  description: "Generate Amazing Images with AI",
+  title: "SynthArt | AI Image Generator",
+  description: "Generate Amazing Images with SynthArt AI",
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} `}>
+        <Header />
+
         {children}
       </body>
     </html>

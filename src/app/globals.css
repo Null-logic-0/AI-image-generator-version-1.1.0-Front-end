@@ -12,7 +12,7 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
+    --background: #060610;
     --foreground: #ededed;
   }
 }
@@ -20,5 +20,16 @@
 body {
   color: var(--foreground);
   background: var(--background);
+  background-image: url("../../public/bg-frame.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
   font-family: Arial, Helvetica, sans-serif;
+}
+.hero-bg {
+  background-image: url("../../public/hero-bg.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  opacity: 75%;
 }
