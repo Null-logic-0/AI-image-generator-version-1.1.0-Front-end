@@ -12,6 +12,7 @@ import {
   getMe,
   getUser,
   updateMe,
+  uploadUserPhoto,
 } from "../controllers/userController.js";
 
 export const router = express.Router();
@@ -25,5 +26,5 @@ router.use(protect);
 
 router.get("/me", getMe, getUser);
 router.patch("/updateMyPassword", updatePassword);
-router.patch("/updateMe", updateMe);
+router.patch("/updateMe", uploadUserPhoto, updateMe);
 router.delete("/deleteMe", deleteMe);
