@@ -7,6 +7,12 @@ import {
   signup,
   updatePassword,
 } from "../controllers/authControler.js";
+import {
+  deleteMe,
+  getMe,
+  getUser,
+  updateMe,
+} from "../controllers/userController.js";
 
 export const router = express.Router();
 
@@ -14,4 +20,10 @@ router.post("/signup", signup);
 router.post("/login", login);
 router.get("/logout", logout);
 
-router.patch("/updateMyPassword", protect, updatePassword);
+// This is Protected routes
+router.use(protect);
+
+router.get("/me", getMe, getUser);
+router.patch("/updateMyPassword", updatePassword);
+router.patch("/updateMe", updateMe);
+router.delete("/deleteMe", deleteMe);
