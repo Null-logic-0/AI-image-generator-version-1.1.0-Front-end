@@ -1,10 +1,10 @@
-import HeaderNavLink from "./HeaderNavLink.js";
+import NavLink from "../NavLink";
 
 function HeaderNav() {
   return (
     <ul className="flex items-center gap-8">
-      <HeaderNavLink href={"#"}>Pricing</HeaderNavLink>
-      <HeaderNavLink href={"#"}>Blog</HeaderNavLink>
+      <NavLink href={"#"}>Pricing</NavLink>
+      <NavLink href={"#"}>Blog</NavLink>
     </ul>
   );
 }

@@ -32,4 +32,31 @@ body {
   background-position: center;
   background-size: cover;
   opacity: 75%;
+  width: 100%;
+}
+
+.bg-testimonial {
+  background-image: url("../../public/bg-testimonials.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  width: 100%;
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 60%;
+  }
+}
+
+.typing-effect {
+  display: inline-block;
+  border-right: 2px solid #caff00; /* Cursor effect */
+  white-space: nowrap;
+  overflow: hidden;
+  width: 0;
+  animation: typing 5s steps(40, end) infinite, blink 0.75s infinite;
 }

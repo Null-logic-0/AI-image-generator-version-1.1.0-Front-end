@@ -20,9 +20,11 @@ function Header() {
           />
           <p className="text-white font-bold text-2xl">SynthArt</p>
         </Link>
-        <HeaderNav />
+        <nav>
+          <HeaderNav />
+        </nav>
         <div>
-          <Button className="px-8">Login</Button>
+          <Button className="px-8">Sign up</Button>
         </div>
       </div>
     </header>
