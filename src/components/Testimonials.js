@@ -4,48 +4,47 @@ import { IoStarSharp } from "react-icons/io5";
 function Testimonials() {
   return (
     <div className="flex gap-[24px] justify-center items-baseline p-12 flex-wrap">
-      <Container
-        className="border-none flex gap-4 items-center text-2xl"
-        icon={
-          <>
-            <IoStarSharp />
-            <IoStarSharp />
-            <IoStarSharp />
-            <IoStarSharp />
-            <IoStarSharp />
-          </>
-        }
-        title="I Love Gencraft!"
-        text="I recently discovered your brand and was immediately drawn to it."
-      />
-      <Container
-        className="border-none flex gap-4 items-center text-2xl"
-        icon={
-          <>
-            <IoStarSharp />
-            <IoStarSharp />
-            <IoStarSharp />
-            <IoStarSharp />
-            <IoStarSharp />
-          </>
-        }
-        title="The Perfect App!"
-        text="Any user can do and create anything on this app. And it keeps getting better!"
-      />
-      <Container
-        className="border-none flex gap-4 items-center text-2xl"
-        icon={
-          <>
-            <IoStarSharp />
-            <IoStarSharp />
-            <IoStarSharp />
-            <IoStarSharp />
-            <IoStarSharp />
-          </>
-        }
-        title="Gencraft is absolutely fantastic!"
-        text="It's incredibly intuitive to use and generates unique characters with remarkable detail."
-      />
+      <Container className="h-[200px] max-w-[400px]">
+        <p className=" p-2 rounded-md flex gap-4 text-2xl items-center justify-center text-[#CAFF00]">
+          <IoStarSharp />
+          <IoStarSharp />
+          <IoStarSharp />
+          <IoStarSharp />
+          <IoStarSharp />
+        </p>
+        <h3>I Love Gencraft!</h3>
+        <p className="text-gray-400 text-sm">
+          I recently discovered your brand and was immediately drawn to it.
+        </p>
+      </Container>
+      <Container className="h-[200px] max-w-[400px]">
+        <p className=" p-2 rounded-md flex gap-4 text-2xl items-center justify-center text-[#CAFF00]">
+          <IoStarSharp />
+          <IoStarSharp />
+          <IoStarSharp />
+          <IoStarSharp />
+          <IoStarSharp />
+        </p>
+        <h3>The Perfect App!</h3>
+        <p className="text-gray-400 text-sm">
+          Any user can do and create anything on this app. And it keeps getting
+          better!
+        </p>
+      </Container>
+      <Container className="h-[200px] max-w-[400px]">
+        <p className=" p-2 rounded-md flex gap-4 text-2xl items-center justify-center text-[#CAFF00]">
+          <IoStarSharp />
+          <IoStarSharp />
+          <IoStarSharp />
+          <IoStarSharp />
+          <IoStarSharp />
+        </p>
+        <h3>Gencraft is absolutely fantastic!</h3>
+        <p className="text-gray-400 text-sm">
+          It&apos;s incredibly intuitive to use and generates unique characters
+          with remarkable detail.
+        </p>
+      </Container>
     </div>
   );
 }

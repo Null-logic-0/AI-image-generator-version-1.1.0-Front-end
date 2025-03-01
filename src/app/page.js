@@ -1,13 +1,16 @@
+import Header from "@/components/Header/Header.js";
 import Hero from "@/components/Hero/Hero.js";
 import ImagesGrid from "@/components/ImageExampleSection/ImagesGrid.js";
 import ImageCarousel from "@/components/Introduce/ImageCarousel.js";
 import Introduce from "@/components/Introduce/Introduce.js";
 import PromptExample from "@/components/Introduce/PromptExample";
 import Testimonials from "@/components/Testimonials";
+import Footer from "@/components/Footer/Footer";
 
 function LandingPage() {
   return (
-    <div>
+    <div className="landing-bg">
+      <Header />
       <Hero />
       <section className="flex justify-center">
         <ImagesGrid />
@@ -45,6 +48,7 @@ function LandingPage() {
         </h2>
         <Testimonials />
       </section>
+      <Footer />
     </div>
   );
 }
