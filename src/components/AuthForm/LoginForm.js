@@ -2,6 +2,7 @@ import Button from "../Button.js";
 import Container from "../Container.js";
 import Input from "../Input.js";
 import InputContainer from "../InputContainer.js";
+import Label from "../Label.js";
 import AuthCTA from "./AuthCTA.js";
 import AuthHeader from "./AuthHeader.js";
 
@@ -12,12 +13,12 @@ function LoginForm() {
         <AuthHeader title="Welcome to SynthArt" />
         <form className="flex flex-col gap-8">
           <InputContainer>
-            Email *
-            <Input type="email" name="email" />
+            <Label htmlFor="email">Email *</Label>
+            <Input type="email" name="email" id="email" />
           </InputContainer>
           <InputContainer>
-            Password *
-            <Input type="password" name="password" />
+            <Label htmlFor="password">Password *</Label>
+            <Input type="password" name="password" id="password" />
           </InputContainer>
           <Button>Login</Button>
         </form>
