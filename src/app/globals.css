@@ -72,8 +72,9 @@ body {
   aspect-ratio: 1;
   border-radius: 50%;
   border: 6px solid black;
-  border-right-color: #4557ff;
+  border-right-color: #caff00;
   animation: rotate 1s infinite linear;
+  margin-top: 30rem;
 }
 
 @keyframes rotate {

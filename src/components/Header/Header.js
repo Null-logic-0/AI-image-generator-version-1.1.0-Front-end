@@ -31,8 +31,8 @@ function Header() {
         <nav>
           <HeaderNav />
         </nav>
-        <div>
-          <Button className="px-8" onClick={handleRoute}>
+        <div className="flex items-center gap-4">
+          <Button className="px-4" onClick={handleRoute}>
             Sign up
           </Button>
         </div>
