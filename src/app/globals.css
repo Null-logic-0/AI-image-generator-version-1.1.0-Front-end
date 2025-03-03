@@ -74,7 +74,6 @@ body {
   border: 6px solid black;
   border-right-color: #caff00;
   animation: rotate 1s infinite linear;
-  margin-top: 30rem;
 }
 
 @keyframes rotate {

@@ -1,6 +1,6 @@
 import Image from "next/image";
-import Logout from "./AuthForm/Logout.js";
 import Logo from "../../public/logo.png";
+import NavMenuButton from "./NavMenuButton.js";
 
 function NavMenuHeader() {
   return (
@@ -10,7 +10,7 @@ function NavMenuHeader() {
         <h3 className="text-white font-bold text-xl">SynthArt</h3>
       </div>
 
-      <Logout />
+      <NavMenuButton />
     </div>
   );
 }

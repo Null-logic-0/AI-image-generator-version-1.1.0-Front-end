@@ -3,6 +3,7 @@ import { sendImageRequest } from "@/lib/data-services.js";
 import GeneratedImage from "./GeneratedImage.js";
 import GenerateImageForm from "./GenerateImageForm.js";
 import { useActionState } from "react";
+import Spinner from "./Spinner.js";
 
 function GenerateImage() {
   async function submitAction(_, formData) {
@@ -29,15 +30,15 @@ function GenerateImage() {
   });
 
   return (
-    <div className="flex justify-center flex-col gap-5 w-full items-center">
+    <div className="flex flex-col items-center gap-5 ">
+      {isPending && <Spinner />}
       <div className="mt-[10rem]">
-        {!formState.result && (
-          <p className="text-stone-400 p-8 font-mono">
+        {!formState.result && !isPending && (
+          <p className="text-gray-400 p-8 text-center text-xl">
             Press &quot;Generate&quot; to generate an image based on your
             prompt.
           </p>
         )}
-
         {formState.result === "success" && (
           <GeneratedImage
             image={formState.imageUrl}
@@ -48,9 +49,9 @@ function GenerateImage() {
           <p className="text-red-200 text-center">{formState.message}</p>
         )}
       </div>
-      <div className="fixed bottom-5 flex-col flex gap-4 items-center w-full max-w-[1000px]">
+      <div className="flex-col flex gap-4 items-center w-full  max-w-[1000px]  fixed bottom-5 px-4">
         <GenerateImageForm action={action} disable={isPending} />
-        <span className="text-gray-400">
+        <span className="text-gray-400 text-center text-sm">
           It can make mistakes. Check important info.
         </span>
       </div>

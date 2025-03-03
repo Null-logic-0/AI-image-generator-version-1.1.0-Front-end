@@ -4,7 +4,7 @@ import Image from "next/image";
 import { FaDownload } from "react-icons/fa";
 import { twMerge } from "tailwind-merge";
 
-function GeneratedImage({ image, alt ,className}) {
+function GeneratedImage({ image, alt, className }) {
   const handleDownload = async () => {
     try {
       const response = await fetch(image);
@@ -24,15 +24,20 @@ function GeneratedImage({ image, alt ,className}) {
   };
 
   return (
-    <div className={twMerge("group relative w-full max-w-[500px]  cursor-pointer hover:border-2 hover:border-[#CAFF00] rounded-2xl",className)}>
-      <div className="flex-1 relative w-[500px] h-[500px]">
+    <div
+      className={twMerge(
+        "group relative w-full max-w-[500px]  cursor-pointer hover:border-2 hover:border-[#CAFF00] rounded-2xl",
+        className
+      )}
+    >
+      <div className="flex-1 relative w-[500px] h-[500px] ">
         <Image
           src={image}
           alt={alt}
           className="group-hover:blur-md object-contain rounded-2xl"
           fill
           quality={100}
-          sizes="(max-width: 640px) 100vw, 500px"
+          sizes="(min-width: 600px) 100vw, 200px"
         />
       </div>
 
