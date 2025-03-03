@@ -6,10 +6,13 @@ import Label from "./Label.js";
 import { WiStars } from "react-icons/wi";
 import Select from "./Select.js";
 
-function GenerateImageForm() {
+function GenerateImageForm({ action, disable }) {
   return (
     <Container className="shadow-none rounded-3xl">
-      <form className="flex  justify-center flex-col items-center gap-4">
+      <form
+        className="flex  justify-center flex-col items-center gap-4"
+        action={action}
+      >
         <div className="flex items-baseline gap-4">
           <InputContainer>
             <Label htmlFor="quality">Quality</Label>
@@ -43,13 +46,17 @@ function GenerateImageForm() {
         </div>
         <div className="relative  w-full">
           <Input
+            name="prompt"
             isTextarea
             className="bg-[#060610] shadow-sm shadow-[#CAFF00] 
           border-2 border-[#25232C] w-full rounded-full resize-none pl-4 py-4 h-14
           focus:border-[#CAFF00] focus:outline-none transform transition-all"
             placeholder="Ask Anything..."
           />
-          <Button className="absolute w-40 top-[28px] right-[5px] transform -translate-y-1/2 flex items-center justify-center px-4 py-2">
+          <Button
+            disabled={disable}
+            className="absolute w-40 top-[28px] right-[5px] transform -translate-y-1/2 flex items-center justify-center px-4 py-2"
+          >
             <WiStars className="text-3xl" />
             Generate
           </Button>

@@ -50,6 +50,7 @@ function ImagePicker({ name, defaultImage }) {
                 src={defaultImage}
                 alt="default image"
                 fill
+                sizes="max-w-[120px] max-h-[120px]"
                 className="object-cover cursor-pointer"
                 onClick={handlePickClick}
               />
@@ -60,6 +61,7 @@ function ImagePicker({ name, defaultImage }) {
               src={pickedImage}
               alt="selected image"
               fill
+              sizes="max-w-[120px] max-h-[120px] w-full h-full"
               className="object-cover cursor-pointer"
               onClick={handlePickClick}
             />

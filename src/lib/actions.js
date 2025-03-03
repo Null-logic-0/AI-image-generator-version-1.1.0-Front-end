@@ -3,12 +3,14 @@ import { cookies } from "next/headers";
 import { revalidatePath } from "next/cache";
 import {
   loginUser,
+  sendImageRequest,
   signupUser,
   updateUserData,
   updateUserPassword,
-  URL,
 } from "./data-services.js";
 import { redirect } from "next/navigation";
+
+const URL = process.env.LOCAL_DATA_URL;
 
 export async function signup(prevState, formData) {
   const name = formData.get("name");
