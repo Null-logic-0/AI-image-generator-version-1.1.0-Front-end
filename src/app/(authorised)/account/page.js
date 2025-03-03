@@ -1,11 +1,12 @@
 import ChangePassword from "@/components/ChangePassword";
-import DeleteAccount from "@/components/DeleteAccount";
 import UpdateProfile from "@/components/UpdateProfile";
+import { getUser } from "@/lib/data-services";
 
-function AccountPage() {
+async function AccountPage() {
+  const { user } = await getUser();
   return (
     <div className="w-full mx-auto justify-center min-h-screen flex flex-wrap gap-8 items-center">
-      <UpdateProfile />
+      <UpdateProfile user={user} />
       <ChangePassword />
     </div>
   );

@@ -1,7 +1,13 @@
 "use server";
 import { cookies } from "next/headers";
 import { revalidatePath } from "next/cache";
-import { loginUser, signupUser, URL } from "./data-services.js";
+import {
+  loginUser,
+  signupUser,
+  updateUserData,
+  updateUserPassword,
+  URL,
+} from "./data-services.js";
 import { redirect } from "next/navigation";
 
 export async function signup(prevState, formData) {
@@ -37,11 +43,43 @@ export async function login(prevState, formData) {
 export async function logout() {
   const cookieStore = await cookies();
   cookieStore.delete("token");
-  const res = await fetch(`${URL}/users/logout`);
+  await fetch(`${URL}/users/logout`);
+  redirect("/");
+}
 
-  if (!res.ok) {
-    redirect("/error");
+export async function updateAccountData(formData) {
+  const name = formData.get("name");
+  const photo = formData.get("photo");
+
+  if (photo && !(photo instanceof File)) {
+    return { success: false, message: "Invalid file format" };
   }
 
-  redirect("/");
+  const res = await updateUserData(name, photo);
+
+  if (!res.success) {
+    return { success: false, message: res.message };
+  }
+  revalidatePath("/account", "page");
+}
+
+export async function updatePassword(formData) {
+  const passwordCurrent = formData.get("passwordCurrent");
+  const password = formData.get("password");
+  const passwordConfirm = formData.get("passwordConfirm");
+
+  console.log("passwordCurrent", passwordCurrent);
+  console.log("password", password);
+  console.log("passwordConfirm", passwordConfirm);
+
+  const res = await updateUserPassword(
+    passwordCurrent,
+    password,
+    passwordConfirm
+  );
+  if (!res.success) {
+    return { success: false, message: res.message };
+  }
+
+  await logout();
 }

@@ -13,7 +13,6 @@ async function auth(path, userData) {
     });
 
     const resData = await response.json();
-    console.log(resData);
 
     if (!response.ok) {
       if (resData.errors) {
@@ -30,7 +29,8 @@ async function auth(path, userData) {
     }
 
     if (resData.token) {
-      cookies().set("token", resData.token, {
+      const cookieStore = await cookies();
+      cookieStore.set("token", resData.token, {
         httpOnly: true,
         secure: process.env.NODE_ENV === "production",
       });
@@ -83,4 +83,76 @@ export async function getUser() {
       message: "Something went wrong while fetching user data.",
     };
   }
+}
+
+export async function updateUserData(name, photo) {
+  const cookieStore = await cookies();
+  const token = cookieStore.get("token")?.value;
+
+  if (!token) {
+    return { success: false, message: "Unauthorized: No token found" };
+  }
+
+  const formData = new FormData();
+  formData.append("name", name);
+  if (photo) {
+    formData.append("photo", photo);
+  } else {
+    return { success: false, message: "Invalid file format" };
+  }
+
+  try {
+    const response = await fetch(`${URL}/users/updateMe`, {
+      method: "PATCH",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      body: formData,
+    });
+
+    const resData = await response.json();
+    if (!response.ok) {
+      return { success: false, message: resData.message || "Update failed" };
+    }
+
+    return { success: true, data: resData };
+  } catch (error) {
+    return { success: false, message: "Something went wrong" };
+  }
+}
+
+export async function updateUserPassword(
+  passwordCurrent,
+  password,
+  passwordConfirm
+) {
+  const cookieStore = await cookies();
+  const token = cookieStore.get("token")?.value;
+
+  if (!token) {
+    return { success: false, message: "Unathorized:No token" };
+  }
+
+  const res = await fetch(`${URL}/users/updateMypassword`, {
+    method: "PATCH",
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      passwordCurrent,
+      password,
+      passwordConfirm,
+    }),
+  });
+
+  const resData = await res.json();
+
+  if (!res.ok) {
+    return {
+      success: false,
+      message: resData.message || "Failed to update password",
+    };
+  }
+  return { success: true, message: "Password updated successfully!" };
 }
