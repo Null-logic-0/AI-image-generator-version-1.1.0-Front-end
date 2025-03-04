@@ -16,7 +16,7 @@ function Header() {
   return (
     <header className="fixed top-0 z-50 w-full">
       <div className="absolute inset-0 bg-[#060610] opacity-60"></div>
-      <div className="relative flex justify-between items-center px-8 py-2">
+      <div className="relative flex justify-between items-center px-4 py-2">
         <Link className="flex items-center" href={"/"}>
           <Image
             src={Logo}

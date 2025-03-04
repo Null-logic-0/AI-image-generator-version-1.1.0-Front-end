@@ -2,12 +2,12 @@ import HeroInputForm from "./HeroInputForm.js";
 
 function Hero() {
   return (
-    <section className="hero-bg min-h-screen flex flex-col gap-8 justify-center items-center px-12">
+    <section className="hero-bg min-h-screen flex flex-col gap-8 justify-center items-center px-4">
       <div className="text-center">
-        <h1 className="font-bold text-white text-[1.875rem] leading-[2.5rem] pb-4">
+        <h1 className="font-bold text-white text-[1.875rem] leading-[2.5rem] pb-4 px-4">
           Create anything as you <span className="text-[#CAFF00]">wish</span>
         </h1>
-        <p className="text-gray-400">
+        <p className="text-gray-400 text-md">
           AI Art Image and Video Generator
           <br /> What will you create?
         </p>

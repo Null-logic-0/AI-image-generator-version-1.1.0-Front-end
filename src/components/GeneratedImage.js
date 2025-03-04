@@ -26,20 +26,18 @@ function GeneratedImage({ image, alt, className }) {
   return (
     <div
       className={twMerge(
-        "group relative w-full max-w-[500px]  cursor-pointer hover:border-2 hover:border-[#CAFF00] rounded-2xl",
+        "group relative cursor-pointer hover:border-2 hover:border-[#CAFF00] rounded-2xl px-4",
         className
       )}
     >
-      <div className="flex-1 relative w-[500px] h-[500px] ">
-        <Image
-          src={image}
-          alt={alt}
-          className="group-hover:blur-md object-contain rounded-2xl"
-          fill
-          quality={100}
-          sizes="(min-width: 600px) 100vw, 200px"
-        />
-      </div>
+      <Image
+        src={image}
+        alt={alt}
+        width={10}
+        height={10}
+        className="group-hover:blur-md object-contain rounded-2xl max-w-[500px] w-full"
+        quality={100}
+      />
 
       <button
         onClick={handleDownload}

@@ -150,9 +150,16 @@ export async function updateUserPassword(
   const resData = await res.json();
 
   if (!res.ok) {
+    if (resData.errors) {
+      return {
+        success: false,
+        message: Object.values(resData.errors).join("\n"),
+      };
+    }
+
     return {
       success: false,
-      message: resData.message || "Failed to update password",
+      message: resData.message || "Action failed. Please try again",
     };
   }
   return { success: true, message: "Password updated successfully!" };

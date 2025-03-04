@@ -10,7 +10,7 @@ function NavMenu({ children }) {
     <>
       {toggleSideBar && (
         <div
-          className="fixed inset-0 bg-black opacity-70 z-10 md:hidden"
+          className="fixed inset-0 bg-black opacity-70 z-10 sm:hidden lg:hidden"
           onClick={handleToggleSideBar}
         />
       )}

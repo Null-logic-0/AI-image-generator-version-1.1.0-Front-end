@@ -6,7 +6,7 @@ async function AccountPage() {
   const { user } = await getUser();
   return (
     <>
-      <div className="w-full mx-auto justify-center min-h-screen flex flex-wrap gap-8 items-center">
+      <div className="w-full mx-auto justify-center min-h-screen flex max-md:flex-col gap-8 items-center  px-4 max-sm:gap-4">
         <UpdateProfile user={user} />
         <ChangePassword />
       </div>

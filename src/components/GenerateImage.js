@@ -13,7 +13,9 @@ function GenerateImage() {
       aspect_ratio: formData.get("aspectRatio"),
       format: formData.get("format"),
     };
-
+    if (!prompt.trim()) {
+      return { result: "error", message: "Promp is required" };
+    }
     try {
       const base64Image = await sendImageRequest(prompt, options);
       const blob = await fetch(base64Image).then((res) => res.blob());
@@ -49,7 +51,7 @@ function GenerateImage() {
           <p className="text-red-200 text-center">{formState.message}</p>
         )}
       </div>
-      <div className="flex-col flex gap-4 items-center w-full  max-w-[1000px]  fixed bottom-5 px-4">
+      <div className="flex-col flex gap-4 items-center w-full  max-w-[1000px]  px-4">
         <GenerateImageForm action={action} disable={isPending} />
         <span className="text-gray-400 text-center text-sm">
           It can make mistakes. Check important info.

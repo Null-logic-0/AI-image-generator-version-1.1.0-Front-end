@@ -6,7 +6,7 @@ import ActionHeader from "@/components/ActionHeader.js";
 function layout({ children }) {
   return (
     <UiContextProvider>
-      <div className="flex flex-col">
+      <div>
         <ActionHeader />
         <div className="flex">
           <NavMenu>

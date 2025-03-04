@@ -64,7 +64,7 @@ export async function updateAccountData(formData) {
   revalidatePath("/account", "page");
 }
 
-export async function updatePassword(formData) {
+export async function updatePassword(prevState, formData) {
   const passwordCurrent = formData.get("passwordCurrent");
   const password = formData.get("password");
   const passwordConfirm = formData.get("passwordConfirm");

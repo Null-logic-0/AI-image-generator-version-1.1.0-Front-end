@@ -6,7 +6,7 @@ import Container from "../Container.js";
 function Introduce() {
   return (
     <div className="flex justify-center items-center px-12 gap-[24px] flex-wrap">
-      <Container className="h-[200px] max-w-[400px]">
+      <Container className="max-md:h-full h-[200px] max-w-[400px] py-2">
         <p className="border-2 w-10 border-[#20221C] p-2 rounded-md flex items-center justify-center text-[#CAFF00]">
           <FaPenToSquare />
         </p>
@@ -16,7 +16,7 @@ function Introduce() {
           generate an image that matches your vision,
         </p>
       </Container>
-      <Container className="h-[200px] max-w-[400px]">
+      <Container className="max-md:h-full h-[200px] max-w-[400px]">
         <p className="border-2 w-10 border-[#20221C] p-2 rounded-md flex items-center justify-center text-[#CAFF00]">
           <FaRegImages />
         </p>
@@ -26,7 +26,7 @@ function Introduce() {
           craft a unique and personalized image presonse.
         </p>
       </Container>
-      <Container className="h-[200px] max-w-[400px]">
+      <Container className="h-[200px]  max-md:h-full max-w-[400px]">
         <p className="border-2 w-10 border-[#20221C] p-2 rounded-md flex items-center justify-center text-[#CAFF00]">
           <FaMagic />
         </p>

@@ -16,17 +16,17 @@ function LandingPage() {
         <ImagesGrid />
       </section>
       <section className="mt-[171px]">
-        <h2 className="font-bold text-white text-[1.875rem] leading-[2.5rem] pb-8 text-center">
+        <h2 className="font-bold text-white text-[1.875rem] leading-[2.5rem] pb-8 text-center px-4">
           How SynthArt works?
         </h2>
         <Introduce />
       </section>
-      <section className="mt-[171px] flex justify-between items-center flex-wrap max-w-[1200px] mx-auto px-12">
+      <section className="mt-[171px] flex justify-between gap-6 items-center max-xl:flex-col-reverse flex-wrap max-w-[1200px] mx-auto px-4">
         <div>
-          <h2 className="font-bold text-white text-[1.875rem] leading-[2.5rem] pb-4 text-left">
+          <h2 className="font-bold text-white text-[1.875rem] leading-[2.5rem] pb-4 text-left max-xl:text-center">
             Text to image
           </h2>
-          <p className="max-w-[544px] w-full text-gray-400 text-sm">
+          <p className="max-w-[544px] w-full text-gray-400 text-sm max-md:text-center">
             Imagine transforming your creative thoughts into breathtaking
             visuals with ease. Generato, our powerful AI engine, effortlessly
             translates your wildest ideas into stunning, high-quality images.
@@ -35,11 +35,12 @@ function LandingPage() {
             creation.
           </p>
         </div>
-        <div className="flex flex-col items-center gap-4">
-          <ImageCarousel />
-          <div>
-            <PromptExample />
+        <div className="flex flex-col items-center mx-auto gap-4 px-4">
+          <div className="max-md:w-full max-md:max-w-[200px]">
+            <ImageCarousel />
           </div>
+
+          <PromptExample />
         </div>
       </section>
       <section className="mt-[171px] bg-testimonial pt-12">

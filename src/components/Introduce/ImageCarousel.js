@@ -20,8 +20,8 @@ function ImageCarousel() {
   }, []);
 
   return (
-    <div className="relative w-[400px] h-[250px] flex items-center justify-center overflow-hidden">
-      <div className="absolute inset-0 flex justify-center items-center">
+    <div className="relative w-[400px] max-h-[250px] flex items-center max-md:w-full justify-center overflow-hidden mx-auto">
+      <div className="absolute inset-0 flex justify-center items-center max-md:hidden">
         {images.map((img, index) => {
           const isPrevious =
             index === (currentIndex - 1 + images.length) % images.length;
@@ -33,7 +33,7 @@ function ImageCarousel() {
               key={index}
               src={img}
               alt={`image${index + 1}`}
-              className={`absolute max-w-[300px] w-full h-full max-h-[200px] object-contain transition-all duration-1000 ease-in-out 
+              className={`absolute max-w-[300px]  w-full h-full max-h-[200px] object-contain transition-all duration-1000 ease-in-out 
                 ${
                   isPrevious
                     ? "opacity-80 scale-75 -translate-x-[120px] blur-md"
@@ -54,7 +54,7 @@ function ImageCarousel() {
       <Image
         src={images[currentIndex]}
         alt={`image${currentIndex + 1}`}
-        className="relative z-20 transition-all duration-1000 ease-in-out scale-105 max-w-[300px] w-full h-full max-h-[200px] object-contain"
+        className="relative z-20 transition-all  duration-1000 ease-in-out scale-105 max-w-[300px] w-full h-full max-h-[200px] object-contain"
       />
     </div>
   );

@@ -5,7 +5,7 @@ function Label({ children, className, ...props }) {
     <label
       {...props}
       className={twMerge(
-        "text-stone-50 font-bold mb-1 text-left text-xs uppercase",
+        "text-stone-50 font-bold mb-1 text-left text-[10px] uppercase",
         className
       )}
     >

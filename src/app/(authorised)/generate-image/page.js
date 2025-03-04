@@ -2,7 +2,7 @@ import GenerateImage from "@/components/GenerateImage";
 
 function ImageGenPage() {
   return (
-    <div className="mx-auto w-full ">
+    <div className="mx-auto w-full">
       <GenerateImage />
     </div>
   );

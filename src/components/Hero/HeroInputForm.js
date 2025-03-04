@@ -13,9 +13,8 @@ function HeroInputForm() {
           focus:border-[#CAFF00] focus:outline-none transform transition-all"
           placeholder="Generate..."
         />
-        <Button className="absolute w-40 top-[28px] right-[5px] transform -translate-y-1/2 flex items-center justify-center px-4 py-2">
+        <Button className="absolute w-10 h-10 top-[28px] right-[5px] transform -translate-y-1/2 flex items-center justify-center">
           <WiStars className="text-3xl" />
-          Generate
         </Button>
       </div>
     </form>

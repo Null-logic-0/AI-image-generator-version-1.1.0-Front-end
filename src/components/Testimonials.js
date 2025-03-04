@@ -4,7 +4,7 @@ import { IoStarSharp } from "react-icons/io5";
 function Testimonials() {
   return (
     <div className="flex gap-[24px] justify-center items-baseline p-12 flex-wrap">
-      <Container className="h-[200px] max-w-[400px]">
+      <Container className="h-[200px] max-md:h-full max-w-[400px]">
         <p className=" p-2 rounded-md flex gap-4 text-2xl items-center justify-center text-[#CAFF00]">
           <IoStarSharp />
           <IoStarSharp />
@@ -17,7 +17,7 @@ function Testimonials() {
           I recently discovered your brand and was immediately drawn to it.
         </p>
       </Container>
-      <Container className="h-[200px] max-w-[400px]">
+      <Container className="h-[200px] max-w-[400px] max-md:h-full">
         <p className=" p-2 rounded-md flex gap-4 text-2xl items-center justify-center text-[#CAFF00]">
           <IoStarSharp />
           <IoStarSharp />
@@ -31,7 +31,7 @@ function Testimonials() {
           better!
         </p>
       </Container>
-      <Container className="h-[200px] max-w-[400px]">
+      <Container className="h-[200px] max-w-[400px] max-md:h-full">
         <p className=" p-2 rounded-md flex gap-4 text-2xl items-center justify-center text-[#CAFF00]">
           <IoStarSharp />
           <IoStarSharp />

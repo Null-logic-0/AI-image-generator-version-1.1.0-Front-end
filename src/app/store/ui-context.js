@@ -32,8 +32,6 @@ export function UiContextProvider({ children }) {
   const contextValue = {
     toggleSideBar: state.toggleSideBar,
     openModal: state.openModal,
-    notification: state.notification,
-    showNotification,
     handleToggleModal: () => dispatch({ type: TOGGLE_MODAL }),
     handleToggleSideBar: () => dispatch({ type: TOGGLE_SIDEBAR }),
   };

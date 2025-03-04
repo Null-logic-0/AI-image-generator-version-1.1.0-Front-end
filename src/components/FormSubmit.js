@@ -2,11 +2,16 @@
 import { useFormStatus } from "react-dom";
 import Button from "./Button.js";
 import SpinnerMini from "./SpinnerMini.js";
+import { twMerge } from "tailwind-merge";
 
-function FormSubmit({ children }) {
+function FormSubmit({ children, className }) {
   const { pending } = useFormStatus();
   return (
-    <Button type="submit" disabled={pending} className="px-2">
+    <Button
+      type="submit"
+      disabled={pending}
+      className={twMerge("px-2", className)}
+    >
       {pending ? (
         <span className="flex justify-center items-center gap-2">
           {children}

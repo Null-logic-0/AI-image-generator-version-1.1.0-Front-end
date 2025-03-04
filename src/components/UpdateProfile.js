@@ -7,6 +7,7 @@ import ImagePicker from "./ImagePicker.js";
 import { updateAccountData } from "@/lib/actions.js";
 import Modal from "./Modal.js";
 import { useUIContext } from "@/app/store/ui-context.js";
+import FormSubmit from "./FormSubmit.js";
 
 function UpdateProfile({ user }) {
   const { handleToggleModal } = useUIContext();
@@ -15,8 +16,8 @@ function UpdateProfile({ user }) {
     : `/${user?.photo || "default.jpg"}`;
   return (
     <>
-      <Container className="max-w-[600px] py-8">
-        <form className="flex flex-col gap-7" action={updateAccountData}>
+      <Container className="max-w-[500px] py-8">
+        <form className="flex flex-col gap-6" action={updateAccountData}>
           <ImagePicker name="photo" defaultImage={userDefaultImage} />
           <Input
             type="text"
@@ -36,7 +37,7 @@ function UpdateProfile({ user }) {
             >
               Delete Account
             </Button>
-            <Button className="max-w-[100px]">save</Button>
+            <FormSubmit className="max-w-[100px]">save</FormSubmit>
           </div>
         </form>
       </Container>
