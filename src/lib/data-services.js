@@ -1,7 +1,7 @@
 "use server";
 import { cookies } from "next/headers";
 
-const URL = process.env.LOCAL_DATA_URL;
+const URL = process.env.LOCAL_DATA_URL || process.env.DATA_URL;
 
 async function auth(path, userData) {
   try {
