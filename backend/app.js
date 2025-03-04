@@ -7,6 +7,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 import mongoSanitize from "express-mongo-sanitize";
 import xss from "xss";
+import compression from "compression";
 
 import { router as userRouter } from "./routes/userRoutes.js";
 import { router as imageGenRouter } from "./routes/imageGenRoute.js";
@@ -56,7 +57,7 @@ const xssSanitization = (req, res, next) => {
   }
   next();
 };
-
+app.use(compression());
 app.use(xssSanitization);
 
 const __filename = fileURLToPath(import.meta.url);
