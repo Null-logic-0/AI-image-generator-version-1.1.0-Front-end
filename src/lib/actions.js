@@ -9,7 +9,7 @@ import {
 } from "./data-services.js";
 import { redirect } from "next/navigation";
 
-// const URL = process.env.LOCAL_DATA_URL ;
+const URL = process.env.DATA_URL;
 
 export async function signup(prevState, formData) {
   const name = formData.get("name");
@@ -44,7 +44,7 @@ export async function login(prevState, formData) {
 export async function logout() {
   const cookieStore = await cookies();
   cookieStore.delete("token");
-  await fetch(`/api/v.1/users/logout`);
+  await fetch(`${URL}/users/logout`);
   redirect("/");
 }
 
@@ -85,7 +85,7 @@ export async function deleteAccount() {
   const cookieStore = await cookies();
   const token = cookieStore.get("token")?.value;
 
-  const response = await fetch(`/api/v.1/users/deleteMe`, {
+  const response = await fetch(`${URL}/users/deleteMe`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",

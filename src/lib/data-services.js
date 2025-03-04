@@ -1,11 +1,11 @@
 "use server";
 import { cookies } from "next/headers";
 
-// const URL = process.env.LOCAL_DATA_URL;
+const URL = process.env.DATA_URL;
 
 async function auth(path, userData) {
   try {
-    const response = await fetch(`/api/v.1/users/${path}`, {
+    const response = await fetch(`${URL}/users/${path}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -63,7 +63,7 @@ export async function getUser() {
       return { success: false, message: "No token found" };
     }
 
-    const res = await fetch(`/api/v.1/users/me`, {
+    const res = await fetch(`${URL}/users/me`, {
       headers: {
         Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
@@ -103,7 +103,7 @@ export async function updateUserData(name, photo) {
   }
 
   try {
-    const response = await fetch(`/api/v.1/users/updateMe`, {
+    const response = await fetch(`${URL}/users/updateMe`, {
       method: "PATCH",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -134,7 +134,7 @@ export async function updateUserPassword(
     return { success: false, message: "Unathorized:No token" };
   }
 
-  const res = await fetch(`/api/v.1/users/updateMypassword`, {
+  const res = await fetch(`${URL}/users/updateMypassword`, {
     method: "PATCH",
     headers: {
       Authorization: `Bearer ${token}`,
@@ -172,7 +172,7 @@ export async function sendImageRequest(prompt, options) {
   if (!token) {
     return { success: false, message: "Unathorized:No token" };
   }
-  const response = await fetch(`/api/v.1/flux-schnell/generate-image`, {
+  const response = await fetch(`${URL}/flux-schnell/generate-image`, {
     method: "POST",
     body: JSON.stringify({ prompt, options }),
     headers: {
