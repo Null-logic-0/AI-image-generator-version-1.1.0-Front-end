@@ -1,9 +1,9 @@
 "use client";
-import { useSideBarContext } from "@/app/store/SideBar-context.js";
+import { useUIContext } from "@/app/store/ui-context.js";
 import { FaSlidersH } from "react-icons/fa";
 
 function NavMenuButton() {
-  const { handleToggleSideBar } = useSideBarContext();
+  const { handleToggleSideBar } = useUIContext();
   return (
     <button className="cursor-pointer" onClick={handleToggleSideBar}>
       <FaSlidersH className="text-xl" />

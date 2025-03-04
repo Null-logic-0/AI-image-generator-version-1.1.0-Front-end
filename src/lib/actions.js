@@ -3,7 +3,6 @@ import { cookies } from "next/headers";
 import { revalidatePath } from "next/cache";
 import {
   loginUser,
-  sendImageRequest,
   signupUser,
   updateUserData,
   updateUserPassword,
@@ -70,10 +69,6 @@ export async function updatePassword(formData) {
   const password = formData.get("password");
   const passwordConfirm = formData.get("passwordConfirm");
 
-  console.log("passwordCurrent", passwordCurrent);
-  console.log("password", password);
-  console.log("passwordConfirm", passwordConfirm);
-
   const res = await updateUserPassword(
     passwordCurrent,
     password,
@@ -84,4 +79,23 @@ export async function updatePassword(formData) {
   }
 
   await logout();
+}
+
+export async function deleteAccount() {
+  const cookieStore = await cookies();
+  const token = cookieStore.get("token")?.value;
+
+  const response = await fetch(`${URL}/users/deleteMe`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  if (!response.ok) {
+    throw new Error("Failed to delete account");
+  }
+
+  redirect("/");
 }

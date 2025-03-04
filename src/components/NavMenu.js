@@ -1,10 +1,10 @@
 "use client";
 import NavItem from "./NavItem.js";
 import NavMenuHeader from "./NavMenuHeader.js";
-import { useSideBarContext } from "@/app/store/SideBar-context.js";
+import { useUIContext } from "@/app/store/ui-context.js";
 
 function NavMenu({ children }) {
-  const { toggleSideBar, handleToggleSideBar } = useSideBarContext();
+  const { toggleSideBar, handleToggleSideBar } = useUIContext();
 
   return (
     <>

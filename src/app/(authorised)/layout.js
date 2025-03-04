@@ -1,13 +1,11 @@
-import Logout from "@/components/AuthForm/Logout.js";
 import NavMenu from "@/components/NavMenu.js";
-import NavMenuButton from "@/components/NavMenuButton";
-import { ToggleSideBarProvider } from "../store/SideBar-context.js";
+import { UiContextProvider } from "../store/ui-context.js";
 import Profile from "@/components/Profile.js";
 import ActionHeader from "@/components/ActionHeader.js";
 
 function layout({ children }) {
   return (
-    <ToggleSideBarProvider>
+    <UiContextProvider>
       <div className="flex flex-col">
         <ActionHeader />
         <div className="flex">
@@ -17,7 +15,7 @@ function layout({ children }) {
           {children}
         </div>
       </div>
-    </ToggleSideBarProvider>
+    </UiContextProvider>
   );
 }
 

@@ -6,7 +6,7 @@ import SpinnerMini from "./SpinnerMini.js";
 function FormSubmit({ children }) {
   const { pending } = useFormStatus();
   return (
-    <Button type="submit" disabled={pending}>
+    <Button type="submit" disabled={pending} className="px-2">
       {pending ? (
         <span className="flex justify-center items-center gap-2">
           {children}

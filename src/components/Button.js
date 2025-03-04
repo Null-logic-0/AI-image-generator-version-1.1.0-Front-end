@@ -5,7 +5,7 @@ function Button({ children, className, ...props }) {
     <button
       {...props}
       className={twMerge(
-        "bg-[#CAFF00] text-[#161615] font-semibold hover:bg-[#DFFF64] py-2 w-full rounded-full disabled:cursor-not-allowed cursor-pointer",
+        "bg-[#CAFF00] text-[#161615] text-sm font-semibold hover:bg-[#DFFF64] py-2 w-full rounded-full disabled:cursor-not-allowed cursor-pointer",
         className
       )}
     >
