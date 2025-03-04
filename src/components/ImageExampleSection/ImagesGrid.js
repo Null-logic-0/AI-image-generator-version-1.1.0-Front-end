@@ -1,4 +1,9 @@
+"use client";
 import Image from "next/image";
+import { motion } from "framer-motion";
+import { useRef } from "react";
+import { useInView } from "framer-motion";
+
 import image1 from "../../../public/hero-images/image-2.png";
 import image2 from "../../../public/hero-images/image-3.png";
 import image3 from "../../../public/hero-images/image-4.png";
@@ -8,18 +13,36 @@ import image6 from "../../../public/hero-images/image-7.png";
 import image7 from "../../../public/hero-images/image-8.png";
 import image8 from "../../../public/hero-images/image-9.png";
 
+const images = [image8, image1, image7, image6, image3, image2, image4, image5];
+
+const fadeInUp = {
+  hidden: { opacity: 0, y: 40 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
+};
+
+function AnimatedImage({ src, alt }) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "0px 0px -100px 0px" });
+
+  return (
+    <motion.div
+      ref={ref}
+      initial="hidden"
+      animate={isInView ? "visible" : "hidden"}
+      variants={fadeInUp}
+    >
+      <Image src={src} alt={alt} quality={80} />
+    </motion.div>
+  );
+}
+
 function ImagesGrid() {
   return (
-    <div className="flex justify-center items-center px-12 gap-[24px] flex-wrap max-w-[1500px]">
-      <Image src={image8} alt="image" quality={80} />
-      <Image src={image1} alt="image" quality={80} />
-      <Image src={image7} alt="image" quality={80} />
-      <Image src={image6} alt="image" quality={80} />
-      <Image src={image3} alt="image" quality={80} />
-      <Image src={image2} alt="image" quality={80} />
-      <Image src={image4} alt="image" quality={80} />
-      <Image src={image5} alt="image" quality={80} />
-    </div>
+    <motion.div className="flex justify-center items-center px-12 gap-6 flex-wrap max-w-[1500px]">
+      {images.map((img, index) => (
+        <AnimatedImage key={index} src={img} alt={`image-${index}`} />
+      ))}
+    </motion.div>
   );
 }
 

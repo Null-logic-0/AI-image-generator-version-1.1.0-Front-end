@@ -32,6 +32,7 @@ function UpdateProfile({ user }) {
           />
           <div className="flex items-center gap-4 justify-end w-full">
             <Button
+              type="button"
               onClick={handleToggleModal}
               className="max-w-[150px] bg-transparent border-2 border-[#25232C] text-[#E50000] hover:bg-red-200"
             >
