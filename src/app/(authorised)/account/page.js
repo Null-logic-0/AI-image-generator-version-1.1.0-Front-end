@@ -2,6 +2,10 @@ import ChangePassword from "@/components/ChangePassword";
 import UpdateProfile from "@/components/UpdateProfile";
 import { getUser } from "@/lib/data-services";
 
+export const metadata = {
+  title: "SynthArt | Account",
+};
+
 async function AccountPage() {
   const { user } = await getUser();
   return (
