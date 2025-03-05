@@ -42,7 +42,7 @@ function ImagePicker({ name, defaultImage }) {
   return (
     <div className="flex flex-col gap-1">
       <div>
-        <div className="group w-[120px] h-[120px] border-[#4c5663] border-2 flex justify-center items-center text-center relative rounded-md">
+        <div className="group w-[100px] h-[100px] border-[#4c5663] border-2 flex justify-center items-center text-center relative rounded-md">
           {!pickedImage ||
             !isImageUpdated ||
             (defaultImage && (
@@ -50,7 +50,7 @@ function ImagePicker({ name, defaultImage }) {
                 src={defaultImage}
                 alt="default image"
                 fill
-                sizes="max-w-[120px] max-h-[120px]"
+                sizes="max-w-[100px] max-h-[100px]"
                 className="object-cover cursor-pointer"
                 onClick={handlePickClick}
               />
@@ -61,7 +61,7 @@ function ImagePicker({ name, defaultImage }) {
               src={pickedImage}
               alt="selected image"
               fill
-              sizes="max-w-[120px] max-h-[120px] w-full h-full"
+              sizes="max-w-[100px] max-h-[100px] w-full h-full"
               className="object-cover cursor-pointer"
               onClick={handlePickClick}
             />

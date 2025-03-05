@@ -15,9 +15,9 @@ function ChangePassword() {
   });
   return (
     <>
-      <Container className="max-w-[500px] py-8">
+      <Container className="max-w-[500px] py-8 h-[400px]">
         <h3 className="text-2xl text-white font-bold mb-7">Change Password</h3>
-        <form className="flex flex-col gap-8" action={formAction}>
+        <form className="flex flex-col gap-6" action={formAction}>
           <InputContainer>
             <Label htmlFor="passwordCurrent">Current Password *</Label>
             <Input
