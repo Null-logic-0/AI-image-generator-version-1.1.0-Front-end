@@ -36,10 +36,7 @@ const links = [
     key: "gallery",
     title: "Gallery",
     icon: <IoImagesOutline />,
-    href: "#",
-    isDisabled: true,
-    note: "soon",
-    message: true,
+    href: "/gallery",
   },
 ];
 
@@ -63,7 +60,7 @@ function NavItem() {
           >
             <Link href={item.href} passHref>
               <div
-                className={`flex gap-2 font-medium  py-2 transition-colors duration-300  ${
+                className={`flex gap-2 font-medium items-center  py-2 transition-colors duration-300  ${
                   isActive
                     ? "text-[#CAFF00]"
                     : `${

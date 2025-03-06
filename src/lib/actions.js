@@ -85,6 +85,10 @@ export async function deleteAccount() {
   const cookieStore = await cookies();
   const token = cookieStore.get("token")?.value;
 
+  if (!token) {
+    return { success: false, message: "Unauthorized: No token" };
+  }
+
   const response = await fetch(`${URL}/users/deleteMe`, {
     method: "DELETE",
     headers: {
@@ -98,4 +102,26 @@ export async function deleteAccount() {
   }
 
   redirect("/");
+}
+
+export async function deleteImage(id) {
+  const cookieStore = await cookies();
+  const token = cookieStore.get("token")?.value;
+
+  if (!token) {
+    return { success: false, message: "Unauthorized: No token" };
+  }
+
+  const response = await fetch(`${URL}/flux-schnell/${id}`, {
+    method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  if (!response.ok) {
+    throw new Error("Failed to delete image");
+  }
+
+  revalidatePath("/gallery", "page");
 }

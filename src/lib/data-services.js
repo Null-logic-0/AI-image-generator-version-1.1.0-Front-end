@@ -2,7 +2,6 @@
 import { cookies } from "next/headers";
 
 const URL = process.env.LOCAL_DATA_URL || process.env.DATA_URL;
-console.log(URL);
 
 async function auth(path, userData) {
   try {
@@ -190,4 +189,32 @@ export async function sendImageRequest(prompt, options) {
   const base64Image = Buffer.from(buffer).toString("base64");
 
   return `data:image/png;base64,${base64Image}`;
+}
+
+export async function getUserImages() {
+  try {
+    const cookieStore = await cookies();
+    const token = cookieStore.get("token")?.value;
+
+    if (!token) {
+      return { success: false, message: "Unauthorized: No token" };
+    }
+
+    const response = await fetch(`${URL}/flux-schnell/user-images`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error(`Failed to fetch images, status: ${response.status}`);
+    }
+
+    const images = await response.json();
+    return { success: true, data: images };
+  } catch (error) {
+    console.error("Error fetching images:", error);
+    return { success: false, message: error.message };
+  }
 }
