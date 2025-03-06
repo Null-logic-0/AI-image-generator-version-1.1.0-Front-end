@@ -27,12 +27,12 @@ const Dropdown = ({ options, onSelect }) => {
     <div className="relative inline-block w-30" ref={dropdownRef}>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="rounded-lg p-2 text-center shadow-sm focus:outline-none  cursor-pointer"
+        className="text-center   focus:outline-none  py-2 cursor-pointer"
       >
         <BsThreeDots className="text-2xl text-white" />
       </button>
       {isOpen && (
-        <ul className="absolute w-full bg-[#0D0D16] border-2 left-1  border-[#25232C] rounded-lg mt-1 shadow-lg max-h-40 overflow-auto">
+        <ul className="absolute w-full bg-[#0D0D16] border-2 left-1  border-[#25232C] top-8 rounded-lg mt-1 shadow-lg max-h-40 overflow-auto">
           {options.map((option) => (
             <li
               key={option}

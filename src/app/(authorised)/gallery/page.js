@@ -12,6 +12,7 @@ export const metadata = {
 
 async function GalleryPage() {
   const { data } = await getUserImages();
+  console.log(data);
 
   return (
     <div className="mx-auto w-full flex flex-col gap-12 px-4">
@@ -23,7 +24,7 @@ async function GalleryPage() {
           ))}
         </li>
       </ul>
-      {!data && (
+      {data.length === 0 && (
         <div className="flex flex-col items-center gap-2 justify-center">
           <Image src={emptyImg} alt="icon" width={80} height={80} />
           <span className="text-center text-xl text-gray-400">No images</span>

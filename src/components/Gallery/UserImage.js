@@ -43,8 +43,8 @@ function UserImage({ id, src }) {
     }
   };
   return (
-    <div className="relative">
-      <div className="absolute">
+    <div className="relative bg-[#25232C] rounded-lg border border-[#CAFF00]/50 p-4 py-8">
+      <div className="absolute top-0">
         <Dropdown options={options} onSelect={handleSelect} />
       </div>
       <Link href={`/gallery/${id}`}>
@@ -53,7 +53,7 @@ function UserImage({ id, src }) {
           alt={`user-image`}
           width={250}
           height={250}
-          className="object-cover rounded-2xl"
+          className="object-cover rounded-sm"
         />
       </Link>
     </div>
