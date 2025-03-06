@@ -1,16 +1,67 @@
 "use server";
 import { revalidatePath } from "next/cache";
 import { cookies } from "next/headers";
-import {
-  loginUser,
-  signupUser,
-  updateUserData,
-  updateUserPassword,
-} from "./data-services.js";
 import { redirect } from "next/navigation";
+
+import { updateUserData, updateUserPassword } from "./data-services.js";
 import { getCookies } from "./cookies.js";
 
 const URL = process.env.LOCAL_DATA_URL || process.env.DATA_URL;
+
+async function auth(path, userData) {
+  try {
+    const response = await fetch(`${URL}/users/${path}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(userData),
+    });
+
+    const resData = await response.json();
+
+    if (!response.ok) {
+      if (resData.errors) {
+        return {
+          success: false,
+          message: Object.values(resData.errors).join("\n"),
+        };
+      }
+
+      return {
+        success: false,
+        message: resData.message || "Action failed. Please try again",
+      };
+    }
+
+    if (resData.token) {
+      const cookieStore = await cookies();
+
+      cookieStore.set("token", resData.token, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        sameSite: "Strict",
+      });
+
+      return { success: true, data: resData };
+    }
+
+    return { success: true, data: resData };
+  } catch (error) {
+    return {
+      success: false,
+      message: "Something went wrong. Please try again.",
+    };
+  }
+}
+
+async function signupUser(name, email, password, passwordConfirm) {
+  return await auth("signup", { name, email, password, passwordConfirm });
+}
+
+async function loginUser(email, password) {
+  return await auth("login", { email, password });
+}
 
 export async function signup(prevState, formData) {
   const name = formData.get("name");

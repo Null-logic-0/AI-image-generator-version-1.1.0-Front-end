@@ -16,12 +16,3 @@ export async function getCookies() {
     return { success: false, message: error.message, token: null };
   }
 }
-
-export async function setTokenCookie(token) {
-  const cookieStore = await cookies();
-
-  cookieStore.set("token", token, {
-    httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
-  });
-}
