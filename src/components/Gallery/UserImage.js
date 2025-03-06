@@ -7,22 +7,14 @@ import { deleteImage } from "@/lib/actions";
 const options = ["Download", "Delete"];
 
 function UserImage({ id, src }) {
-  const handleDownload = async () => {
-    try {
-      const response = await fetch(src);
-      const blob = await response.blob();
-      const url = window.URL.createObjectURL(blob);
+  const handleDownload = (src, fileName = "image.png") => {
+    const a = document.createElement("a");
+    a.href = src;
+    a.download = fileName;
 
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = `image-${id}.png`;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      window.URL.revokeObjectURL(url);
-    } catch (error) {
-      console.error("Download failed:", error);
-    }
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
   };
 
   const handleDelete = async () => {
@@ -35,11 +27,11 @@ function UserImage({ id, src }) {
 
   const handleSelect = (value) => {
     if (value === "Download") {
-      handleDownload();
+      handleDownload(src);
     }
 
     if (value === "Delete") {
-      handleDelete();
+      handleDelete(id);
     }
   };
   return (

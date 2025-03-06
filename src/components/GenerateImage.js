@@ -7,34 +7,40 @@ import { sendImageRequest } from "@/lib/actions.js";
 
 function GenerateImage() {
   async function submitAction(_, formData) {
-    const prompt = formData.get("prompt");
+    const prompt = formData.get("prompt")?.trim();
+    if (!prompt) return { result: "error", message: "Prompt is required" };
+
     const options = {
       quality: formData.get("quality"),
       aspect_ratio: formData.get("aspectRatio"),
       format: formData.get("format"),
     };
-    if (!prompt.trim()) {
-      return { result: "error", message: "Promp is required" };
-    }
-    try {
-      const base64Image = await sendImageRequest(prompt, options);
-      const blob = await fetch(base64Image).then((res) => res.blob());
-      const imageUrl = URL.createObjectURL(blob);
 
-      return { result: "success", imageUrl, prompt };
+    try {
+      const { success, imageUrl, message } = await sendImageRequest(
+        prompt,
+        options
+      );
+      if (!success) throw new Error(message || "Image generation failed.");
+
+      return {
+        result: "success",
+        imageUrl,
+        prompt,
+      };
     } catch (error) {
+      console.error("Error in submitAction:", error.message);
       return { result: "error", message: error.message };
     }
   }
-
   const [formState, action, isPending] = useActionState(submitAction, {
     result: null,
   });
 
   return (
-    <div className="flex flex-col items-center gap-5 ">
+    <div className="flex flex-col items-center   gap-14 max-sm:gap-2">
       {isPending && <Spinner />}
-      <div className="mt-[10rem]">
+      <div className="mt-[10px] ">
         {!formState.result && !isPending && (
           <p className="text-gray-400 p-8 text-center text-xl">
             Press &quot;Generate&quot; to generate an image based on your
@@ -51,7 +57,7 @@ function GenerateImage() {
           <p className="text-red-200 text-center">{formState.message}</p>
         )}
       </div>
-      <div className="flex-col flex gap-4 items-center w-full  max-w-[1000px]  px-4">
+      <div className="flex-col flex gap-4 items-center w-full  max-w-[1000px] pb-4  px-4">
         <GenerateImageForm action={action} disable={isPending} />
         <span className="text-gray-400 text-center text-sm">
           It can make mistakes. Check important info.

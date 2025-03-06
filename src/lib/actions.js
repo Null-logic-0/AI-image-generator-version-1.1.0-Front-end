@@ -158,29 +158,56 @@ export async function deleteAccount() {
   redirect("/");
 }
 
+// export async function sendImageRequest(prompt, options) {
+//   const { success, token, message } = await getCookies();
+
+//   if (!success) {
+//     return { success: false, message };
+//   }
+//   const response = await fetch(`${URL}/flux-schnell/generate-image`, {
+//     method: "POST",
+//     body: JSON.stringify({ prompt, options }),
+//     headers: {
+//       "Content-Type": "application/json",
+//       Authorization: `Bearer ${token}`,
+//     },
+//   });
+
+//   if (!response.ok) {
+//     throw new Error("Failed to generate image, check your input.");
+//   }
+
+//   const buffer = await response.arrayBuffer();
+//   const base64Image = Buffer.from(buffer).toString("base64");
+
+//   return `data:image/png;base64,${base64Image}`;
+// }
+
 export async function sendImageRequest(prompt, options) {
-  const { success, token, message } = await getCookies();
+  try {
+    const { success, token, message } = await getCookies();
+    if (!success) return { success: false, message };
 
-  if (!success) {
-    return { success: false, message };
+    const response = await fetch(`${URL}/flux-schnell/generate-image`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({ prompt, options }),
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.message || "Failed to generate image.");
+    }
+
+    const { imageUrl } = await response.json();
+    return { success: true, imageUrl };
+  } catch (error) {
+    console.error("Error in sendImageRequest:", error.message);
+    return { success: false, message: error.message };
   }
-  const response = await fetch(`${URL}/flux-schnell/generate-image`, {
-    method: "POST",
-    body: JSON.stringify({ prompt, options }),
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
-    },
-  });
-
-  if (!response.ok) {
-    throw new Error("Failed to generate image, check your input.");
-  }
-
-  const buffer = await response.arrayBuffer();
-  const base64Image = Buffer.from(buffer).toString("base64");
-
-  return `data:image/png;base64,${base64Image}`;
 }
 
 export async function deleteImage(id) {

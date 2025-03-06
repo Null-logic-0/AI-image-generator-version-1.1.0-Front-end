@@ -114,20 +114,31 @@ export async function getUserImages() {
   const { success, token, message } = await getCookies();
 
   if (!success) {
-    return { success: false, message };
+    return {
+      success: false,
+      message: message || "Failed to retrieve user token",
+    };
   }
 
   const response = await fetch(`${URL}/flux-schnell/user-images`, {
     headers: {
+      credentials: "include",
       Authorization: `Bearer ${token}`,
       "Content-Type": "application/json",
     },
   });
 
   if (!response.ok) {
-    return { success: false, message: "Failed to fetch data" };
+    return { success: false, message: "Failed to fetch data from the server" };
   }
 
-  const images = await response.json();
-  return { success: true, data: images };
+  const data = await response.json();
+
+  if (!data.success) {
+    return { success: false, message: data.message || "No images found" };
+  }
+
+  const images = data.images || [];
+
+  return { success: true, images };
 }

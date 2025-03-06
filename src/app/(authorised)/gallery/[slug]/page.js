@@ -3,14 +3,14 @@ import { getUserImages } from "@/lib/data-services.js";
 
 async function ImageCarouselPage({ params }) {
   const { slug } = await params;
-  const { data } = await getUserImages();
+  const { images } = await getUserImages();
 
   const imageId = slug;
 
-  const imageIndex = data.findIndex((img) => img._id === imageId);
+  const imageIndex = images.findIndex((img) => img._id === imageId);
   return (
     <div className="mx-auto">
-      <ImageCarousel images={data} initialIndex={imageIndex} />
+      <ImageCarousel images={images} initialIndex={imageIndex} />
     </div>
   );
 }
