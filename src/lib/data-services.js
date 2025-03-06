@@ -1,6 +1,6 @@
 import { getCookies } from "./cookies.js";
 
-const URL = process.env.LOCAL_DATA_URL || process.env.NEXT_PUBLIC_DATA_URL;
+const URL = process.env.LOCAL_DATA_URL || process.env.DATA_URL;
 
 export async function getUser() {
   try {

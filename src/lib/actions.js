@@ -6,7 +6,7 @@ import { redirect } from "next/navigation";
 import { updateUserData, updateUserPassword } from "./data-services.js";
 import { getCookies } from "./cookies.js";
 
-const URL = process.env.LOCAL_DATA_URL || process.env.NEXT_PUBLIC_DATA_URL;
+const URL = process.env.LOCAL_DATA_URL || process.env.DATA_URL;
 
 async function auth(path, userData) {
   try {
