@@ -208,13 +208,12 @@ export async function getUserImages() {
     });
 
     if (!response.ok) {
-      throw new Error(`Failed to fetch images, status: ${response.status}`);
+      return { success: false, message: "failed to fetch data" };
     }
 
     const images = await response.json();
     return { success: true, data: images };
   } catch (error) {
-    console.error("Error fetching images:", error);
     return { success: false, message: error.message };
   }
 }
