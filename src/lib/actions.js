@@ -6,7 +6,7 @@ import { redirect } from "next/navigation";
 import { updateUserData, updateUserPassword } from "./data-services.js";
 import { getCookies } from "./cookies.js";
 
-const URL = process.env.LOCAL_DATA_URL || process.env.DATA_URL;
+const URL = process.env.LOCAL_DATA_URL || process.env.NEXT_PUBLIC_DATA_URL;
 
 async function auth(path, userData) {
   try {
@@ -157,31 +157,6 @@ export async function deleteAccount() {
 
   redirect("/");
 }
-
-// export async function sendImageRequest(prompt, options) {
-//   const { success, token, message } = await getCookies();
-
-//   if (!success) {
-//     return { success: false, message };
-//   }
-//   const response = await fetch(`${URL}/flux-schnell/generate-image`, {
-//     method: "POST",
-//     body: JSON.stringify({ prompt, options }),
-//     headers: {
-//       "Content-Type": "application/json",
-//       Authorization: `Bearer ${token}`,
-//     },
-//   });
-
-//   if (!response.ok) {
-//     throw new Error("Failed to generate image, check your input.");
-//   }
-
-//   const buffer = await response.arrayBuffer();
-//   const base64Image = Buffer.from(buffer).toString("base64");
-
-//   return `data:image/png;base64,${base64Image}`;
-// }
 
 export async function sendImageRequest(prompt, options) {
   try {

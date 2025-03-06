@@ -10,12 +10,12 @@ async function ImageGallery() {
   if (!success) {
     return (
       <div className="flex flex-col items-center gap-2 justify-center mx-auto">
-        <span className="text-center text-xl text-gray-300">{message}</span>
+        <span className="text-center text-xl text-gray-400">{message}</span>
       </div>
     );
   }
   return (
-    <ul className="flex justify-center items-center ">
+    <ul>
       <li className="flex gap-4 items-center flex-wrap justify-center">
         {images.map((image) => (
           <UserImage key={image._id} src={image.imageData} id={image._id} />
