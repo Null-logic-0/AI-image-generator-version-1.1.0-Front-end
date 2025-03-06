@@ -12,7 +12,6 @@ export const metadata = {
 
 async function GalleryPage() {
   const { data } = await getUserImages();
-  console.log(data);
 
   return (
     <div className="mx-auto w-full flex flex-col gap-12 px-4">
