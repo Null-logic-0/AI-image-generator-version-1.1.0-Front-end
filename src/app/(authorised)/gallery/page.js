@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import UserImage from "@/components/Gallery/UserImage.js";
 import { getUserImages } from "@/lib/data-services.js";
 import Image from "next/image";
