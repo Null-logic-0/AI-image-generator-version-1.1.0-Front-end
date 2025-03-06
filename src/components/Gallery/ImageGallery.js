@@ -10,7 +10,7 @@ async function ImageGallery() {
   if (!success) {
     return (
       <div className="flex flex-col items-center gap-2 justify-center mx-auto">
-        <span className="text-center text-xl text-gray-400">{message}</span>
+        <span className="text-center text-xl text-gray-300">{message}</span>
       </div>
     );
   }
