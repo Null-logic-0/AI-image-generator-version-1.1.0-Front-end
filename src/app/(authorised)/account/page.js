@@ -1,4 +1,3 @@
-export const dynamic = "force-dynamic";
 import ChangePassword from "@/components/ChangePassword";
 import UpdateProfile from "@/components/UpdateProfile";
 import { getUser } from "@/lib/data-services";

@@ -1,9 +1,9 @@
 "use client";
-import { sendImageRequest } from "@/lib/data-services.js";
+import { useActionState } from "react";
 import GeneratedImage from "./GeneratedImage.js";
 import GenerateImageForm from "./GenerateImageForm.js";
-import { useActionState } from "react";
 import Spinner from "./Spinner.js";
+import { sendImageRequest } from "@/lib/actions.js";
 
 function GenerateImage() {
   async function submitAction(_, formData) {

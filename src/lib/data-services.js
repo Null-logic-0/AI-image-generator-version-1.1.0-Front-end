@@ -1,7 +1,8 @@
-"use server";
-import { cookies } from "next/headers";
+import { getCookies, setTokenCookie } from "./cookies.js";
 
 const URL = process.env.LOCAL_DATA_URL || process.env.DATA_URL;
+
+console.log(URL);
 
 async function auth(path, userData) {
   try {
@@ -30,11 +31,7 @@ async function auth(path, userData) {
     }
 
     if (resData.token) {
-      const cookieStore = await cookies();
-      cookieStore.set("token", resData.token, {
-        httpOnly: true,
-        secure: process.env.NODE_ENV === "production",
-      });
+      setTokenCookie(resData.token);
     }
 
     return { success: true, data: resData };
@@ -56,11 +53,10 @@ export async function loginUser(email, password) {
 
 export async function getUser() {
   try {
-    const cookieStore = await cookies();
-    const token = cookieStore.get("token")?.value;
+    const { success, token, message } = await getCookies();
 
-    if (!token) {
-      return { success: false, message: "No token found" };
+    if (!success) {
+      return { success: false, message };
     }
 
     const res = await fetch(`${URL}/users/me`, {
@@ -87,11 +83,10 @@ export async function getUser() {
 }
 
 export async function updateUserData(name, photo) {
-  const cookieStore = await cookies();
-  const token = cookieStore.get("token")?.value;
+  const { success, token, message } = await getCookies();
 
-  if (!token) {
-    return { success: false, message: "Unauthorized: No token found" };
+  if (!success) {
+    return { success: false, message };
   }
 
   const formData = new FormData();
@@ -127,11 +122,10 @@ export async function updateUserPassword(
   password,
   passwordConfirm
 ) {
-  const cookieStore = await cookies();
-  const token = cookieStore.get("token")?.value;
+  const { success, token, message } = await getCookies();
 
-  if (!token) {
-    return { success: false, message: "Unathorized:No token" };
+  if (!success) {
+    return { success: false, message };
   }
 
   const res = await fetch(`${URL}/users/updateMypassword`, {
@@ -165,55 +159,24 @@ export async function updateUserPassword(
   return { success: true, message: "Password updated successfully!" };
 }
 
-export async function sendImageRequest(prompt, options) {
-  const cookieStore = await cookies();
-  const token = cookieStore.get("token")?.value;
+export async function getUserImages() {
+  const { success, token, message } = await getCookies();
 
-  if (!token) {
-    return { success: false, message: "Unathorized:No token" };
+  if (!success) {
+    return { success: false, message };
   }
-  const response = await fetch(`${URL}/flux-schnell/generate-image`, {
-    method: "POST",
-    body: JSON.stringify({ prompt, options }),
+
+  const response = await fetch(`${URL}/flux-schnell/user-images`, {
     headers: {
-      "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
     },
   });
 
   if (!response.ok) {
-    throw new Error("Failed to generate image, check your input.");
+    return { success: false, message: "Failed to fetch data" };
   }
 
-  const buffer = await response.arrayBuffer();
-  const base64Image = Buffer.from(buffer).toString("base64");
-
-  return `data:image/png;base64,${base64Image}`;
-}
-
-export async function getUserImages() {
-  try {
-    const cookieStore = await cookies();
-    const token = cookieStore.get("token")?.value;
-
-    if (!token) {
-      return { success: false, message: "Unauthorized: No token" };
-    }
-
-    const response = await fetch(`${URL}/flux-schnell/user-images`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-      },
-    });
-
-    if (!response.ok) {
-      return { success: false, message: "failed to fetch data" };
-    }
-
-    const images = await response.json();
-    return { success: true, data: images };
-  } catch (error) {
-    return { success: false, message: error.message };
-  }
+  const images = await response.json();
+  return { success: true, data: images };
 }

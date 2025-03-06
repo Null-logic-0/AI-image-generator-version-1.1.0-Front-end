@@ -1,6 +1,6 @@
 "use server";
-import { cookies } from "next/headers";
 import { revalidatePath } from "next/cache";
+import { cookies } from "next/headers";
 import {
   loginUser,
   signupUser,
@@ -8,6 +8,7 @@ import {
   updateUserPassword,
 } from "./data-services.js";
 import { redirect } from "next/navigation";
+import { getCookies } from "./cookies.js";
 
 const URL = process.env.LOCAL_DATA_URL || process.env.DATA_URL;
 
@@ -44,7 +45,10 @@ export async function login(prevState, formData) {
 export async function logout() {
   const cookieStore = await cookies();
   cookieStore.delete("token");
+
   await fetch(`${URL}/users/logout`);
+
+  revalidatePath("/", "page");
   redirect("/");
 }
 
@@ -82,11 +86,10 @@ export async function updatePassword(prevState, formData) {
 }
 
 export async function deleteAccount() {
-  const cookieStore = await cookies();
-  const token = cookieStore.get("token")?.value;
+  const { success, token, message } = await getCookies();
 
-  if (!token) {
-    return { success: false, message: "Unauthorized: No token" };
+  if (!success) {
+    return { success: false, message };
   }
 
   const response = await fetch(`${URL}/users/deleteMe`, {
@@ -104,12 +107,36 @@ export async function deleteAccount() {
   redirect("/");
 }
 
-export async function deleteImage(id) {
-  const cookieStore = await cookies();
-  const token = cookieStore.get("token")?.value;
+export async function sendImageRequest(prompt, options) {
+  const { success, token, message } = await getCookies();
 
-  if (!token) {
-    return { success: false, message: "Unauthorized: No token" };
+  if (!success) {
+    return { success: false, message };
+  }
+  const response = await fetch(`${URL}/flux-schnell/generate-image`, {
+    method: "POST",
+    body: JSON.stringify({ prompt, options }),
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  if (!response.ok) {
+    throw new Error("Failed to generate image, check your input.");
+  }
+
+  const buffer = await response.arrayBuffer();
+  const base64Image = Buffer.from(buffer).toString("base64");
+
+  return `data:image/png;base64,${base64Image}`;
+}
+
+export async function deleteImage(id) {
+  const { success, token, message } = await getCookies();
+
+  if (!success) {
+    return { success: false, message };
   }
 
   const response = await fetch(`${URL}/flux-schnell/${id}`, {

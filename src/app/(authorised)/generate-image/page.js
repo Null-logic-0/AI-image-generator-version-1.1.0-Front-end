@@ -1,5 +1,4 @@
-export const dynamic = "force-dynamic";
-import GenerateImage from "@/components/GenerateImage";
+import GenerateImage from "@/components/GenerateImage.js";
 
 function ImageGenPage() {
   return (
