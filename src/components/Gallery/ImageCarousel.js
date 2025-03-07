@@ -85,7 +85,7 @@ function ImageCarousel({ images, initialIndex }) {
         </button>
 
         <button
-          onClick={() => router.push("/gallery")}
+          onClick={() => router.push("/image-gallery")}
           className="absolute top-4 right-4 max-sm:right-0 text-white p-2  max-sm:opacity-100 rounded z-20 cursor-pointer opacity-0 group-hover:opacity-100"
         >
           <MdClose className="text-3xl max-sm:text-xl" />

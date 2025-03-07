@@ -39,7 +39,7 @@ function UserImage({ id, src }) {
       <div className="absolute top-0">
         <Dropdown options={options} onSelect={handleSelect} />
       </div>
-      <Link href={`/gallery/${id}`}>
+      <Link href={`/image-gallery/${id}`}>
         <Image
           src={src}
           alt={`user-image`}

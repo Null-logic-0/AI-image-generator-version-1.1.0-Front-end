@@ -203,5 +203,53 @@ export async function deleteImage(id) {
     throw new Error("Failed to delete image");
   }
 
-  revalidatePath("/gallery", "page");
+  revalidatePath("/image-gallery", "page");
+}
+
+export async function sendVideoRequest(prompt, options) {
+  try {
+    const { success, token, message } = await getCookies();
+    if (!success) return { success: false, message };
+
+    const response = await fetch(`${URL}/wan-video/generate-video`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({ prompt, options }),
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.message || "Failed to generate video.");
+    }
+
+    const { videoUrl } = await response.json();
+    return { success: true, videoUrl };
+  } catch (error) {
+    console.error("Error in sendVideoRequest:", error.video);
+    return { success: false, message: error.message };
+  }
+}
+
+export async function deleteVideo(id) {
+  const { success, token, message } = await getCookies();
+
+  if (!success) {
+    return { success: false, message };
+  }
+
+  const response = await fetch(`${URL}/wan-video/${id}`, {
+    method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  if (!response.ok) {
+    throw new Error("Failed to delete video");
+  }
+
+  revalidatePath("/video-gallery", "page");
 }

@@ -4,6 +4,8 @@ import { BsStars } from "react-icons/bs";
 import { RiImageAiLine } from "react-icons/ri";
 import { IoImagesOutline } from "react-icons/io5";
 import { RiVideoAddFill } from "react-icons/ri";
+import { IoVideocamSharp } from "react-icons/io5";
+
 import Link from "next/link.js";
 import { usePathname } from "next/navigation.js";
 
@@ -27,16 +29,19 @@ const links = [
     key: "generate video",
     title: "Generate video",
     icon: <RiVideoAddFill />,
-    href: "#",
-    isDisabled: true,
-    note: "soon",
-    message: true,
+    href: "/generate-video",
   },
   {
-    key: "gallery",
-    title: "Gallery",
+    key: "images",
+    title: "Image gallery",
     icon: <IoImagesOutline />,
-    href: "/gallery",
+    href: "/image-gallery",
+  },
+  {
+    key: "videos",
+    title: "Video gallery",
+    icon: <IoVideocamSharp />,
+    href: "/video-gallery",
   },
 ];
 

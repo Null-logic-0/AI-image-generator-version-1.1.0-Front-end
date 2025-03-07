@@ -142,3 +142,36 @@ export async function getUserImages() {
 
   return { success: true, images };
 }
+
+export async function getUserVideos() {
+  const { success, token, message } = await getCookies();
+
+  if (!success) {
+    return {
+      success: false,
+      message: message || "Failed to retrieve user token",
+    };
+  }
+
+  const response = await fetch(`${URL}/wan-video/user-videos`, {
+    headers: {
+      credentials: "include",
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    },
+  });
+
+  if (!response.ok) {
+    return { success: false, message: "Failed to fetch data from the server" };
+  }
+
+  const data = await response.json();
+
+  if (!data.success) {
+    return { success: false, message: data.message || "No videos found" };
+  }
+
+  const videos = data.videos || [];
+
+  return { success: true, videos };
+}

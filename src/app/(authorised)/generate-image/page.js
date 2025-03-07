@@ -1,4 +1,4 @@
-import GenerateImage from "@/components/GenerateImage.js";
+import GenerateImage from "@/components/GenerateImage/GenerateImage.js";
 
 function ImageGenPage() {
   return (
