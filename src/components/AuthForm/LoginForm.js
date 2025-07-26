@@ -39,7 +39,7 @@ function LoginForm() {
           />
         </div>
       </Container>
-      <ValidationError error={formState.message} />
+      <ValidationError error={formState.message} key={formState.id} />
     </>
   );
 }
