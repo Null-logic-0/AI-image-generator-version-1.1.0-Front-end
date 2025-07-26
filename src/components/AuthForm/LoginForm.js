@@ -20,7 +20,7 @@ function LoginForm() {
       <Container className="px-2 py-4 max-w-[400px]">
         <div className="flex flex-col gap-6">
           <AuthHeader title="Welcome to SynthArt" />
-          <form className="flex flex-col gap-8" action={formAction}>
+          <form className="flex flex-col gap-8" action={formAction} key={JSON.stringify(formState)}>
             <InputContainer>
               <Label htmlFor="email">Email *</Label>
               <Input type="email" name="email" id="email" />
