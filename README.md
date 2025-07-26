@@ -33,7 +33,7 @@ A web interface built with Next.js and Tailwind CSS for generating AI-powered im
 3️⃣ Setup Environment Variables
 Create a .env file in the root directory and add:
 
-    NEXT_PUBLIC_API_URL=http://your-backend-url.com/api
+    NEXT_PUBLIC_API_URL=http://your-backend-url.com/api/v.1
 
 4️⃣ Run the Development Server
 

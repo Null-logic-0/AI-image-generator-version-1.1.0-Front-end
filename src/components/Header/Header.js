@@ -32,6 +32,9 @@ function Header() {
           <HeaderNav />
         </nav>
         <div className="flex items-center gap-4">
+          <Link href="/login" passHref>
+            <Button className="px-4">Login</Button>
+          </Link>
           <Button className="px-4" onClick={handleRoute}>
             Sign up
           </Button>
