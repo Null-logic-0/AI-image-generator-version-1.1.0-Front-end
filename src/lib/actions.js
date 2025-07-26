@@ -86,7 +86,7 @@ export async function login(prevState, formData) {
   const res = await loginUser(email, password);
 
   if (!res.success) {
-    return { success: false, message: res.message };
+    return { success: false, message: res.message, id: Date.now() };
   }
 
   revalidatePath("/generate-image", "page");
