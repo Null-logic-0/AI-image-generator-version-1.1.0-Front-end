@@ -31,8 +31,6 @@ const links = [
     icon: <RiVideoAddFill />,
     href: "/generate-video",
     isDisabled: true,
-    note: "soon",
-    message: true,
   },
   {
     key: "images",
@@ -46,8 +44,6 @@ const links = [
     icon: <IoVideocamSharp />,
     href: "/video-gallery",
     isDisabled: true,
-    note: "soon",
-    message: true,
   },
 ];
 
