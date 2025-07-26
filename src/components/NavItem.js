@@ -69,24 +69,25 @@ function NavItem() {
               borderLeft: isActive ? "2px solid  #CAFF00" : "none",
             }}
           >
-            <Link href={item.href} passHref>
+            {item.isDisabled ? (
               <div
-                className={`flex gap-2 font-medium items-center  py-2 transition-colors duration-300  ${
-                  isActive
-                    ? "text-[#CAFF00]"
-                    : `${
-                        item.isDisabled
-                          ? "text-gray-400 font-regular cursor-not-allowed"
-                          : "text-[#B5B7BF]"
-                      }`
-                }`}
-                style={{ cursor: item.isDisabled ? "not-allowed" : "pointer" }}
+                className={`flex gap-2 font-medium items-center  py-2 transition-colors duration-300 text-gray-400 font-regular cursor-not-allowed`}
               >
                 {item.icon}
                 {item.title}
               </div>
-            </Link>
-
+            ) : (
+              <Link href={item.href} passHref>
+                <div
+                  className={`flex gap-2 font-medium items-center  py-2 transition-colors duration-300 ${
+                    isActive ? "text-[#CAFF00]" : "text-[#B5B7BF]"
+                  }`}
+                >
+                  {item.icon}
+                  {item.title}
+                </div>
+              </Link>
+            )}
             {item.message && (
               <span className="bg-gray-600 px-2 py-2 flex justify-center items-center rounded-2xl w-[45px] h-[24px] leading-4 font-bold text-[12px]">
                 {item.note}
